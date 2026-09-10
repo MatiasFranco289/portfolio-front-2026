@@ -2,6 +2,9 @@ export const GITHUB_URL = "https://github.com/MatiasFranco289";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/matiasfranco289";
 export const EMAIL = "matias.franco289@gmail.com";
 
+export const RESUME_EN = "/resume_en.pdf";
+export const RESUME_ES = "/resume_es.pdf";
+
 export const API_KEY = "API_KEY";
 
 export const LOGIN_URL = "/auth/login";
