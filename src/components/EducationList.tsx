@@ -17,8 +17,8 @@ export default function EducationsList({
       en: "Present",
     },
     title: {
-      es: "Estudios",
-      en: "Education",
+      es: "Estudios Formales",
+      en: "Formal Education",
     },
   };
   const defaultEducations = [1, 2, 3];
@@ -43,21 +43,21 @@ export default function EducationsList({
                 }
                 style={{ animationDelay: `${200 * index}ms` }}
               >
-                <div className="flex flex-row items-center items-stretch">
+                <div className="flex flex-row items-center items-stretch mt-6">
                   <div className="relative hidden sm:flex justify-center items-center mr-10">
                     <div className="w-4 aspect-square bg-white rounded-full" />
 
-                    {index === 0 && (
+                    {/* {index === 0 && (
                       <div className="absolute bg-white w-1 top-[50%] h-3/6" />
-                    )}
+                    )} */}
 
                     {index !== 0 && index !== educations.length - 1 && (
                       <div className="absolute bg-white w-1 top-0 h-full" />
                     )}
 
-                    {index === educations.length - 1 && (
+                    {/* {index === educations.length - 1 && (
                       <div className="absolute bg-white w-1 bottom-[50%] h-3/6" />
-                    )}
+                    )} */}
                   </div>
 
                   <div

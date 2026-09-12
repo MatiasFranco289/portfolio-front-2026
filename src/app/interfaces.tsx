@@ -98,4 +98,19 @@ export interface Skill {
 export interface Technology {
   id: number;
   name: string;
+  technology_type: TechnologyType;
 }
+
+export type TechnologyType =
+  | "LANGUAGES"
+  | "FRONTEND"
+  | "BACKEND"
+  | "MOBILE"
+  | "DB"
+  | "GAME DEVELOPMENT"
+  | "INFRA"
+  | "TESTING"
+  | "VERSION CONTROL"
+  | "METHODOLOGIES"
+  | "TOOLS"
+  | "OTHERS";

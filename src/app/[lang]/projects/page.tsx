@@ -4,6 +4,7 @@ import axiosInstance from "@/axios";
 import { useGlobal } from "@/components/GlobalProvider";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectLoadingCard from "@/components/ProjectLoadingCard";
+import Separator from "@/components/Separator";
 import { API_KEY, ES, PROJECTS_FROM_USER_URL, US } from "@/constants";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -51,6 +52,7 @@ export default function Projects() {
       <h2 className="text-3xl font-roboto font-semibold mt-12">
         {title[params.lang as keyof typeof title]}
       </h2>
+      <Separator width="w-2/6" gap="h-10" />
 
       {projects ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-6">

@@ -64,9 +64,9 @@ export default function About() {
 
   return (
     <div className="bg-[#1c1e1e] w-full min-h-screen flex justify-center font-roboto pt-6 sm:p-6 overflow-hidden">
-      <div className="w-4/6">
+      <div className="w-5/6 sm:w-4/6 bg-black/10 p-8 pt-0 rounded-lg mt-12">
         <h2
-          className={`text-3xl font-semibold mb-6 mt-12 ${
+          className={`text-3xl font-semibold mb-6 mt-8 ${
             !userDetails ? "animate-pulse" : ""
           }`}
           style={{
