@@ -76,3 +76,9 @@ export function getMonthName(dateStr: string, lang: "es" | "en") {
 
   return monthAbbrev;
 }
+
+export function capitalize(text: string): string {
+  if (!text) return "";
+  const lower = text.toLowerCase();
+  return lower.charAt(0).toUpperCase() + lower.slice(1);
+}
