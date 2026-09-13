@@ -6,7 +6,7 @@ interface MarkdownSection {
 
 export default function MarkdownSection({ content }: MarkdownSection) {
   return (
-    <div className="bg-[#252828] px-4 py-2 rounded-2xl border border-white w-full">
+    <div className="bg-[#252828] px-4 py-2 rounded-2xl w-full">
       <ReactMarkdown
         components={{
           h2: ({ node, ...props }) => (

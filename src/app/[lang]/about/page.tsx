@@ -1,5 +1,5 @@
 "use client";
-import { User } from "@/app/interfaces";
+import { Technology, TechnologyType, User } from "@/app/interfaces";
 import axiosInstance from "@/axios";
 import EducationsList from "@/components/EducationList";
 import ExperiencesList from "@/components/ExperiencesList";
@@ -7,10 +7,15 @@ import { useGlobal } from "@/components/GlobalProvider";
 import MarkdownSection from "@/components/MarkdownSection";
 import Separator from "@/components/Separator";
 import SkillList from "@/components/SkillList";
-import { API_KEY, USER_DETAILS_URL } from "@/constants";
+import {
+  API_KEY,
+  TECHNOLOGY_BY_LANGUAGES,
+  USER_DETAILS_URL,
+} from "@/constants";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "@/css/CommonAnimations.module.css";
+import { capitalize } from "@/utils";
 
 export default function About() {
   const { appReady } = useGlobal();
@@ -29,6 +34,10 @@ export default function About() {
     title: {
       es: "Sobre mí",
       en: "About me",
+    },
+    skills: {
+      es: "Habilidades",
+      en: "Skills",
     },
   };
 
@@ -62,11 +71,22 @@ export default function About() {
     getUserDetails();
   }, [appReady]);
 
+  const technologiesByType: Record<string, Technology[]> = {};
+  userDetails?.technologies.forEach((technology) => {
+    const techTypeName = technology.technology_type;
+
+    if (!(techTypeName in technologiesByType)) {
+      technologiesByType[techTypeName] = [];
+    }
+
+    technologiesByType[techTypeName].push(technology);
+  });
+
   return (
     <div className="bg-[#1c1e1e] w-full min-h-screen flex justify-center font-roboto pt-6 sm:p-6 overflow-hidden">
-      <div className="w-5/6 sm:w-4/6 bg-black/10 p-8 pt-0 rounded-lg mt-12">
+      <div className="w-5/6 md:w-4/6 bg-black/10 p-8 pt-0 rounded-xl mt-12">
         <h2
-          className={`text-3xl font-semibold mb-6 mt-8 ${
+          className={`text-3xl font-semibold mb-8 mt-10 ${styles.up_item} ${
             !userDetails ? "animate-pulse" : ""
           }`}
           style={{
@@ -84,16 +104,38 @@ export default function About() {
           <div className="w-full h-64 animate-pulse rounded-2xl bg-[#252828]" />
         )}
 
-        <Separator gap="h-24 sm:h-36" />
+        <Separator gap="mt-20" />
+        <h2 className={`text-3xl font-semibold mt-8 mb-10 ${styles.up_item}`}>
+          {textByLanguage.skills[lang]}
+        </h2>
 
-        <div className="p-2 sm:p-6 rounded-md">
-          <SkillList
-            title={textByLanguage.technicalSkills[lang]}
-            items={userDetails?.technologies}
-          />
+        <div className="">
+          {Object.entries(technologiesByType).map(
+            ([techType, techs], index) => {
+              return (
+                <div
+                  className=" mt-6 p-6 rounded-xl"
+                  key={`tech_type_${techType}`}
+                  style={{
+                    backgroundColor: `${index % 2 == 0 ? "#252828" : ""}`,
+                  }}
+                >
+                  <SkillList
+                    title={
+                      TECHNOLOGY_BY_LANGUAGES[
+                        techType as keyof typeof TECHNOLOGY_BY_LANGUAGES
+                      ][lang]
+                    }
+                    items={techs}
+                    index={index}
+                  />
+                </div>
+              );
+            },
+          )}
         </div>
 
-        <div className="mt-12 bg-[#252828] p-2 sm:p-6 rounded-md">
+        <div className="mt-6 p-6 rounded-xl">
           <SkillList
             title={textByLanguage.softSkills[lang]}
             items={userDetails?.skills}

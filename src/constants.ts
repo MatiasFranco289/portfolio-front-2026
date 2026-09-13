@@ -17,17 +17,23 @@ export const USER_DETAILS_URL = "/users/1";
 export const PROJECTS_URL = "/projects";
 export const BLOGS_URL = "/blogs";
 
-export const TECHNOLOGY_TYPE_COLORS: Record<TechnologyType, string> = {
-  LANGUAGES: "#3178C6", // Azul TypeScript / Azul fuerte
-  FRONTEND: "#00E5FF", // Cyan neón / Turquesa brillante
-  BACKEND: "#10B981", // Verde esmeralda
-  MOBILE: "#84CC16", // Verde lima
-  DB: "#F59E0B", // Ámbar / Dorado
-  "GAME DEVELOPMENT": "#EC4899", // Rosa neón / Magenta
-  INFRA: "#FF6B00", // Naranja intenso
-  TESTING: "#EF4444", // Rojo carmesí
-  "VERSION CONTROL": "#8B5CF6", // Violeta / Púrpura
-  METHODOLOGIES: "#06B6D4", // Azul océano
-  TOOLS: "#64748B", // Gris pizarra metálico
-  OTHERS: "#A1A1AA", // Gris claro neutro
+export const TECHNOLOGY_BY_LANGUAGES: Record<
+  TechnologyType,
+  { es: string; en: string }
+> = {
+  LANGUAGES: { en: "Languages", es: "Lenguajes" },
+  FRONTEND: { en: "Frontend", es: "Frontend" },
+  BACKEND: { en: "Backend", es: "Backend" },
+  MOBILE: { en: "Mobile", es: "Mobile" },
+  DB: { en: "Databases", es: "Bases de datos" },
+  "GAME DEVELOPMENT": {
+    en: "Game Development",
+    es: "Desarrollo de videojuegos",
+  },
+  INFRA: { en: "Infrastructure", es: "Infraestructura" },
+  TESTING: { en: "Testing", es: "Testing" },
+  "VERSION CONTROL": { en: "Version Control", es: "Control de versiones" },
+  METHODOLOGIES: { en: "Methodologies", es: "Metodologías" },
+  TOOLS: { en: "Tools", es: "Herramientas" },
+  OTHERS: { en: "Others", es: "Otros" },
 };
