@@ -10,6 +10,7 @@ import ProjectDetailsLoading from "@/components/ProjectDetailsLoading";
 import { API_KEY, PROJECTS_URL } from "@/constants";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import styles from "@/css/CommonAnimations.module.css";
 
 export default function ProjectDetails() {
   const { appReady } = useGlobal();
@@ -75,7 +76,9 @@ export default function ProjectDetails() {
             />
           </div>
 
-          <div className="bg-[#252828] rounded-xl mt-6 p-2 h-full overflow-scroll">
+          <div
+            className={`bg-[#252828] rounded-xl mt-6 p-2 h-full overflow-scroll ${styles.right_item}`}
+          >
             <MarkdownSection content={blogContent} />
           </div>
         </div>

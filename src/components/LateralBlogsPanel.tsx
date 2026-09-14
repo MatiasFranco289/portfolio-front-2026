@@ -3,6 +3,7 @@ import axiosInstance from "@/axios";
 import { API_KEY, BLOGS_URL, DEFAULT_BLOG, PROJECTS_URL } from "@/constants";
 import { useParams } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import styles from "@/css/CommonAnimations.module.css";
 
 interface LateralBlogsPanel {
   projectDescription: string;
@@ -22,6 +23,7 @@ export default function LateralBlogsPanel({
     },
   ]);
   const [selectedBlogID, setSelectedBlogID] = useState<Number>(-1);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!projectDescription) return;
@@ -51,6 +53,9 @@ export default function LateralBlogsPanel({
             `The following error has occurred while trying to load the blogs of the project with id ${projectID}`,
           );
           console.error(err);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
 
@@ -62,8 +67,9 @@ export default function LateralBlogsPanel({
       {blogs.map((blog, index) => {
         return (
           <button
-            className={`${blog.id === selectedBlogID ? "bg-white/20" : "cursor-pointer hover:bg-white/20"} 
+            className={`${styles.left_item} ${blog.id === selectedBlogID ? "bg-white/20" : "cursor-pointer hover:bg-white/20"} 
             text-xl w-full rounded-md my-1 p-1`}
+            style={{ animationDelay: `${200 * index}ms` }}
             key={`blog_${index}`}
             onClick={() => {
               setSelectedBlogID(blog.id);
@@ -74,6 +80,17 @@ export default function LateralBlogsPanel({
           </button>
         );
       })}
+
+      {loading && (
+        <div>
+          <div className="h-8 w-full rounded-md my-1 p-1 animate-pulse animate-pulse text-center text-xl bg-white/10">
+            ...
+          </div>
+          <div className="h-8 w-full rounded-md my-2 p-1 animate-pulse [animation-delay:300ms] text-center text-xl bg-white/10">
+            ...
+          </div>
+        </div>
+      )}
     </div>
   );
 }
