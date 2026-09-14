@@ -3,7 +3,6 @@ import axiosInstance from "@/axios";
 import { API_KEY, BLOGS_URL, DEFAULT_BLOG, PROJECTS_URL } from "@/constants";
 import { useParams } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useGlobal } from "./GlobalProvider";
 
 interface LateralBlogsPanel {
   projectDescription: string;

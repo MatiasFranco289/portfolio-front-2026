@@ -1,12 +1,13 @@
 "use client";
-import { Blog, ProjectDetails as ProjectDetailsI } from "@/app/interfaces";
+import { ProjectDetails as ProjectDetailsI } from "@/app/interfaces";
 import axiosInstance from "@/axios";
 import ExternalResourceList from "@/components/ExternalResourceList";
 import { useGlobal } from "@/components/GlobalProvider";
 import LateralBlogsPanel from "@/components/LateralBlogsPanel";
 import MarkdownSection from "@/components/MarkdownSection";
 import ProjectDetailsHeader from "@/components/ProjectDetailsHeader";
-import { API_KEY, BLOGS_URL, PROJECTS_URL } from "@/constants";
+import ProjectDetailsLoading from "@/components/ProjectDetailsLoading";
+import { API_KEY, PROJECTS_URL } from "@/constants";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -44,7 +45,7 @@ export default function ProjectDetails() {
     }
 
     getProjectDetails();
-  }, [appReady, projectID, params.lang]);
+  }, [appReady]);
 
   return project ? (
     <div className="bg-[#1c1e1e] sm:h-screen flex-row min-h-screen w-full flex">
@@ -81,8 +82,6 @@ export default function ProjectDetails() {
       </div>
     </div>
   ) : (
-    <div>
-      <h2>toy cargando viteh</h2>
-    </div>
+    <ProjectDetailsLoading />
   );
 }
