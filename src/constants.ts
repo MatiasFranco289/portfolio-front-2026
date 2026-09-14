@@ -1,4 +1,4 @@
-import { TechnologyType } from "./app/interfaces";
+import { Blog, TechnologyType } from "./app/interfaces";
 
 export const GITHUB_URL = "https://github.com/MatiasFranco289";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/matiasfranco289";
@@ -36,4 +36,14 @@ export const TECHNOLOGY_BY_LANGUAGES: Record<
   METHODOLOGIES: { en: "Methodologies", es: "Metodologías" },
   TOOLS: { en: "Tools", es: "Herramientas" },
   OTHERS: { en: "Others", es: "Otros" },
+};
+
+export const DEFAULT_BLOG: Blog = {
+  id: -1,
+  user_id: -1,
+  project_id: -1,
+  title: "",
+  body: "",
+  created_at: "",
+  updated_at: "",
 };

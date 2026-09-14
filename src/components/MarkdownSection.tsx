@@ -2,11 +2,15 @@ import ReactMarkdown from "react-markdown";
 
 interface MarkdownSection {
   content: string;
+  bgColor?: string;
 }
 
-export default function MarkdownSection({ content }: MarkdownSection) {
+export default function MarkdownSection({
+  content,
+  bgColor = "bg-[#252828]",
+}: MarkdownSection) {
   return (
-    <div className="bg-[#252828] px-4 py-2 rounded-2xl w-full">
+    <div className={`${bgColor} px-4 py-2 rounded-2xl w-full`}>
       <ReactMarkdown
         components={{
           h2: ({ node, ...props }) => (
