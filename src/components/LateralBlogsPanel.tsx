@@ -68,7 +68,7 @@ export default function LateralBlogsPanel({
         return (
           <button
             className={`${styles.left_item} ${blog.id === selectedBlogID ? "bg-white/20" : "cursor-pointer hover:bg-white/20"} 
-            text-xl w-full rounded-md my-1 p-1`}
+            text-xl w-full rounded-md my-1 p-1 text-left truncate`}
             style={{ animationDelay: `${200 * index}ms` }}
             key={`blog_${index}`}
             onClick={() => {
