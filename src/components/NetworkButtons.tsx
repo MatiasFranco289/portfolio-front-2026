@@ -1,4 +1,10 @@
-import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "../constants"
+import {
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  RESUME_EN,
+  RESUME_ES,
+} from "../constants";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaFileDownload } from "react-icons/fa";
@@ -8,14 +14,20 @@ import { copyToClipboard } from "@/utils";
 import { toast } from "react-toastify";
 import toastStyles from "../css/Toast.module.css";
 import { useParams } from "next/navigation";
+import { useGlobal } from "./GlobalProvider";
 
 export default function NetworkButtons() {
+  const { homeVisited } = useGlobal();
   const { lang } = useParams<{ lang: string }>();
-  const resumeUrl = lang === "es" ? "/resume_es.pdf" : "/resume_en.pdf";
+  const resumeUrl = lang.toLowerCase() == "es" ? RESUME_ES : RESUME_EN;
 
   return (
     <div
-      className={ styles.network_buttons}
+      className={
+        !homeVisited.current
+          ? styles.network_buttons
+          : styles.network_buttons_no_anim
+      }
     >
       <span className="hover:scale-110 duration-200">
         <a href={GITHUB_URL} target="_blank">
@@ -33,18 +45,15 @@ export default function NetworkButtons() {
         <button
           className="cursor-pointer outline-none"
           onClick={() => {
-            copyToClipboard(
-              EMAIL,
-              () => {
-                toast.success("Email copied to cliboard.", {
-                  theme: "dark",
-                  className: toastStyles.info_toast,
-                  progressClassName: toastStyles.info_toast_bar,
-                  icon: false,
-                  position: "top-left",
-                });
-              }
-            )
+            copyToClipboard(EMAIL, () => {
+              toast.success("Email copied to cliboard.", {
+                theme: "dark",
+                className: toastStyles.info_toast,
+                progressClassName: toastStyles.info_toast_bar,
+                icon: false,
+                position: "top-left",
+              });
+            });
           }}
         >
           <IoMailSharp className="text-3xl sm:text-5xl" />

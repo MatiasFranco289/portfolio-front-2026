@@ -1,0 +1,38 @@
+import ReactMarkdown from "react-markdown";
+
+interface MarkdownSection {
+  content: string;
+  bgColor?: string;
+}
+
+export default function MarkdownSection({
+  content,
+  bgColor = "bg-[#252828]",
+}: MarkdownSection) {
+  return (
+    <div className={`${bgColor} px-4 py-2 rounded-2xl w-full`}>
+      <ReactMarkdown
+        components={{
+          h2: ({ node, ...props }) => (
+            <h2
+              className="text-2xl font-bold text-white my-4 font-roboto"
+              {...props}
+            />
+          ),
+          p: ({ node, ...props }) => (
+            <p className="font-roboto my-4" {...props} />
+          ),
+          code: ({ node, ...props }) => (
+            <code className="text-violet-600" {...props} />
+          ),
+          em: ({ node, ...props }) => (
+            <em className="text-green-600" {...props} />
+          ),
+          ul: ({ children }) => <ul className="list-disc pl-5">{children}</ul>,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+}
