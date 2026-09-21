@@ -28,6 +28,7 @@ export default function MarkdownSection({
           em: ({ node, ...props }) => (
             <em className="text-green-600" {...props} />
           ),
+          ul: ({ children }) => <ul className="list-disc pl-5">{children}</ul>,
         }}
       >
         {content}

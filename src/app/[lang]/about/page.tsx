@@ -97,7 +97,7 @@ export default function About() {
         </h2>
 
         {userDetails ? (
-          <div className={styles.unfold}>
+          <div className={styles.right_item}>
             <MarkdownSection content={userDetails.long_description} />
           </div>
         ) : (
