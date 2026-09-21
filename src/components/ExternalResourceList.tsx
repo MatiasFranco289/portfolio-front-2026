@@ -29,9 +29,13 @@ export default function ExternalResourceList({
     WEB: <IoIosLink className="text-xl" />,
   };
 
+  const sortedResources = [...externalResources].sort((a, b) =>
+    a.type.localeCompare(b.type),
+  );
+
   return (
     <div className="space-y-2 mb-3 flex flex-col items-start">
-      {externalResources.map((resource, index) => {
+      {sortedResources.map((resource, index) => {
         return (
           <div
             key={`resource_${index}`}
